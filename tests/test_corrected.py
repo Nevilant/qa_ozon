@@ -19,11 +19,9 @@ def test_check_upload_dog(breed, path, pre_condition):
 
     response = yandex_client.get_files_from_yd(path)
 
-    # проверяем, что создалась папка
     assert response.json()['type'] == "dir"
     assert response.json()['name'] == "test_folder"
 
-    # проверяем наличие файлов
     if not DogAPI().get_sub_breeds(breed):
         items = response.json()['_embedded']['items']
         assert len(items) == 1

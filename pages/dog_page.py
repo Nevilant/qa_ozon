@@ -2,9 +2,9 @@ import requests
 
 
 class DogAPI:
-    base_url: str = 'https://dog.ceo/api/breed'
+    base_url = 'https://dog.ceo/api/breed'
 
-    def get_sub_breeds(self, breed: str):
+    def get_sub_breeds(self, breed):
         """
         Получаем список подпород
         :param breed: указываем породу
@@ -13,7 +13,7 @@ class DogAPI:
         response = requests.get(f'{self.base_url}/{breed}/list')
         return response.json().get('message', [])
 
-    def get_urls_img(self, breed: str, sub_breeds: str):
+    def get_urls_img(self, breed, sub_breeds):
         """
         Получаем список URL картинок пород, либо подпород
         :param breed: указываем породу

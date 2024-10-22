@@ -2,21 +2,20 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from requests import Response
 
 load_dotenv()
 
 
 class YaUploader:
-    base_url: str = 'https://cloud-api.yandex.net/v1/disk/resources'
-    token: str | None = os.getenv('YANDEX_OAUTH_TOKEN')
-    headers: dict | None = {
+    base_url = 'https://cloud-api.yandex.net/v1/disk/resources'
+    token = os.getenv('YANDEX_OAUTH_TOKEN')
+    headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': f'OAuth {token}'
     }
 
-    def create_folder(self, path: str) -> Response:
+    def create_folder(self, path):
         """
         Создаем каталог
         :param path: название каталога
@@ -27,7 +26,7 @@ class YaUploader:
             headers=self.headers)
         return response
 
-    def upload_photos_to_yd(self, path: str, url_file: str, name) -> Response:
+    def upload_photos_to_yd(self, path, url_file, name):
         """
         Загружаем фотографию в каталог
         :param path: название каталога
@@ -48,7 +47,7 @@ class YaUploader:
         )
         return response
 
-    def get_files_from_yd(self, path: str) -> Response:
+    def get_files_from_yd(self, path):
         """
         Получаем информацию о файле или каталоге
         :param path: название каталога
@@ -60,7 +59,7 @@ class YaUploader:
         )
         return response
 
-    def delete_folder(self, path: str) -> Response:
+    def delete_folder(self, path: str):
         """
         Удаляем каталог
         :param path: название каталога
